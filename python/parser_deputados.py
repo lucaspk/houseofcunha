@@ -64,6 +64,10 @@ for file in files:
        to_print.append(fone)
        to_print.append(email)
 
+       deputado_infos = [ideCadastro, condicao, matricula, idParlamentar,
+                         nome, nomeParlamentar, urlFoto, sexo, uf, partido, gabinete, fone,
+                         email]
+
        for _print in to_print:
             fileToWrite.write(_print + "\t")
        
