@@ -41,11 +41,6 @@ for file in files:
 
     i = 0
     for votacao in votacoes:
-        to_print = []
-        to_print.append(sigla)
-        to_print.append(n_prop)
-        to_print.append(ano)
-
         i += 1
         resumo = votacao.attributes['Resumo'].value.strip().replace(',','.').replace("\r\n",'')
         data_prop = votacao.attributes['Data'].value.strip()
@@ -53,12 +48,7 @@ for file in files:
         objetivo = votacao.attributes['ObjVotacao'].value.strip().replace(',','.')
         sessao = votacao.attributes['codSessao'].value.strip()
 
-        to_print.append(str(i))
-        to_print.append(resumo)
-        to_print.append(data_prop)
-        to_print.append(hora_prop)
-        to_print.append(objetivo)
-        to_print.append(sessao)
+        votacao_infos = [sigla, n_prop, ano, str(i), resumo, data_prop, hora_prop, objetivo, sessao]
 
         bancada = votacao.getElementsByTagName('bancada')
         map_bancada = {}
@@ -82,12 +72,6 @@ for file in files:
             uf = dep.attributes['UF'].value.strip()
             voto = dep.attributes['Voto'].value.strip().lower()
 
-            to_print_dep.append(nome)
-            to_print_dep.append(id_dep)
-            to_print_dep.append(partido)
-            to_print_dep.append(uf)
-            to_print_dep.append(voto)
-
             orientacao = map_bancada.get(partido, 'NA')
             if orientacao == 'NA':
                 for key in map_bancada.keys():
@@ -95,16 +79,15 @@ for file in files:
                         if partido in key:
                             orientacao = map_bancada.get(key)
 
-            to_print_dep.append(orientacao)
-            to_print_dep.append(map_bancada.get('gov.','NA'))
+            deputado_infos = [nome, id_dep, partido, uf, voto, orientacao, map_bancada.get('gov.','NA')]
 
             for key in map_bancada:
                 if 'pmdb' in key:
-                    to_print_dep.append(map_bancada.get(key,'NA'))
+                    deputado_infos.append(map_bancada.get(key,'NA'))
                     break
 
-            if len(to_print + to_print_dep) == 17:
-                to_print_final =  ','.join(to_print + to_print_dep)
+            if len(votacao_infos + deputado_infos) == 17:
+                to_print_final =  ','.join(votacao_infos + deputado_infos)
                 fileToWrite.write(to_print_final + "\n")
 
     total_num_votacoes += i

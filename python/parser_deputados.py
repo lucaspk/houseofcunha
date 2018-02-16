@@ -49,26 +49,10 @@ for file in files:
        fone = deputado.getElementsByTagName('fone')[0].firstChild.nodeValue
        email = deputado.getElementsByTagName('email')[0].firstChild.nodeValue
 
-       to_print = []
-       to_print.append(ideCadastro)
-       to_print.append(condicao)
-       to_print.append(matricula)
-       to_print.append(idParlamentar)
-       to_print.append(nome)
-       to_print.append(nomeParlamentar)
-       to_print.append(urlFoto)
-       to_print.append(sexo)
-       to_print.append(uf)
-       to_print.append(partido)
-       to_print.append(gabinete)
-       to_print.append(fone)
-       to_print.append(email)
+       deputado_infos = [ideCadastro, condicao, matricula, idParlamentar, nome, nomeParlamentar, urlFoto, sexo, uf,
+                         partido, gabinete, fone, email]
 
-       deputado_infos = [ideCadastro, condicao, matricula, idParlamentar,
-                         nome, nomeParlamentar, urlFoto, sexo, uf, partido, gabinete, fone,
-                         email]
-
-       for _print in to_print:
+       for _print in deputado_infos:
             fileToWrite.write(_print + "\t")
        
        fileToWrite.write("\n")

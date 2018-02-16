@@ -58,8 +58,6 @@ for file in os.listdir(props_folder_path):
             print "ERROR: >>>" + filePath
             continue
 
-    prop_data = []
-
     proposicao = xmldoc.getElementsByTagName('proposicao')[0]
     tipo = getElementAttributeAsString(xmldoc,'proposicao','tipo')
     numero = getElementAttributeAsString(xmldoc,'proposicao','numero')
@@ -87,30 +85,10 @@ for file in os.listdir(props_folder_path):
     link_inteiro_teor = getElementValueAsString(xmldoc,'LinkInteiroTeor')
     apensadas = getElementValueAsString(xmldoc,'apensadas')
 
-    prop_data.append(tipo)
-    prop_data.append(numero)
-    prop_data.append(ano)
-    prop_data.append(nome_proposicao)
-    prop_data.append(id_proposicao)
-    prop_data.append(id_proposicao_principal)
-    prop_data.append(nome_proposicao_origem)
-    prop_data.append(tipo_proposicao)
-    prop_data.append(tema)
-    prop_data.append(ementa)
-    prop_data.append(explicacao_ementa)
-    prop_data.append(autor)
-    prop_data.append(ide_cadastro)
-    prop_data.append(uf_autor)
-    prop_data.append(partido_autor)
-    prop_data.append(data_apresentacao)
-    prop_data.append(regime_tramitacao)
-    prop_data.append(data_ultimo_despacho)
-    prop_data.append(ultimo_despacho)
-    prop_data.append(apreciacao)
-    prop_data.append(indexacao)
-    prop_data.append(situacao)
-    prop_data.append(link_inteiro_teor)
-    prop_data.append(apensadas)
+    prop_data = [tipo, numero, ano, nome_proposicao, id_proposicao, id_proposicao_principal, nome_proposicao_origem,
+                 tipo_proposicao, tema, ementa, explicacao_ementa, autor, ide_cadastro, uf_autor, partido_autor,
+                 data_apresentacao, regime_tramitacao, data_ultimo_despacho, ultimo_despacho, apreciacao, indexacao,
+                 situacao, link_inteiro_teor, apensadas]
 
     if len(prop_data) == NUM_TABLE_COLS:
         #print prop_data
